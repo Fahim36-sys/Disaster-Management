@@ -1,9 +1,9 @@
-public class Person {
+public class Person{
     private String personid;
     private String name;
     private String phone;
-    Person(){}
-    Person(String personid, String name, String phone){
+    public Person(){}
+    public Person(String personid, String name, String phone){
         this.personid=personid;
         this.name=name;
         this.phone=phone;
