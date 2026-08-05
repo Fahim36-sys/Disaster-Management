@@ -11,7 +11,7 @@ public class Person{
     public String getname(){return name;}
     public String getphone(){return phone;}
      
-     public void showDetails(){
+     public void showPersonDetails(){
         System.out.println("Name: "+name);
         System.out.println("Phone: "+phone);
      }

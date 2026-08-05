@@ -19,10 +19,10 @@ public class Citizen{
     public void setAddress(String address){this.address=address;}
     public String getReportType(){return reportType;}
     public void setReportType(String reportType){this.reportType = reportType;}
-    public void showDetails(){
+    public void showCitizenDetails(){
         System.out.println("CitizenID: "+citizenID);
         System.out.println("Address: "+address);
         System.out.println("ReportType: "+reportType);
-        person.showDetails();
+        person.showPersonDetails();
     }
 }
