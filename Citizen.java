@@ -18,7 +18,7 @@ public class Citizen{
     public String getAddress(){return address;}
     public void setAddress(String address){this.address=address;}
     public String getReportType(){return reportType;}
-    public void setReportType(String reportType){this.reportType = reportType;}
+    public void setReportType(String reportType){this.reportType=reportType;}
     public void showCitizenDetails(){
         System.out.println("CitizenID: "+citizenID);
         System.out.println("Address: "+address);
