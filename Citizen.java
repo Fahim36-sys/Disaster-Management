@@ -23,6 +23,8 @@ public class Citizen{
         System.out.println("CitizenID: "+citizenID);
         System.out.println("Address: "+address);
         System.out.println("ReportType: "+reportType);
-        person.showPersonDetails();
+        if(person != null){
+            person.showPersonDetails();
+        }
     }
 }
