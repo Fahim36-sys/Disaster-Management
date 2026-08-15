@@ -1,4 +1,4 @@
-public class Person{
+public abstract class Person{
     private String name;
     private String phone;
     public Person(){}
@@ -16,5 +16,5 @@ public class Person{
         System.out.println("Name: "+name);
         System.out.println("Phone: "+phone);
      }
-     
+     public abstract void displayDetails();
 }
