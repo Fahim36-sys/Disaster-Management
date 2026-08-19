@@ -1,20 +1,21 @@
-public class TeamLeader extends Person{
+                                            public class TeamLeader{
+    //team leader has many response team
     private String teamLeaderID;
+    private Person person;
     public TeamLeader(){}
-    public TeamLeader(String name,String phone,String teamLeaderID){
-        super(name,phone); // Call the constructor of the abstract class Person
+    public TeamLeader(String teamLeaderID){
         this.teamLeaderID=teamLeaderID;
     }
     public void setLeaderID(String teamLeaderID){
         this.teamLeaderID=teamLeaderID;
     }
-    public String getLeaderID(){return teamLeaderID;}
-    public void showLeaderID(){
-        System.out.println("Team Leader ID: "+teamLeaderID);
-        super.showPersonDetails();
+    public void setPerson(Person person){
+        this.person=person;
     }
-    @Override
-    public void displayDetails(){
-        showLeaderID();
+    public String getLeaderID(){return teamLeaderID;}
+    public Person getPerson(){return person;}
+    public void showLeaderID(){
+        System.out.println("Team ID: "+teamLeaderID);
+        person.showPersonDetails();
     }
 }

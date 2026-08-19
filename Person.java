@@ -8,6 +8,7 @@ public abstract class Person{
     }
     public void setname(String name){this.name=name;}
     public void setphone(String phone){this.phone=phone;}
+    public abstract void Respondable();
     
     public String getname(){return name;}
     public String getphone(){return phone;}
@@ -16,5 +17,6 @@ public abstract class Person{
         System.out.println("Name: "+name);
         System.out.println("Phone: "+phone);
      }
-     public abstract void displayDetails();
+     
 }
+``

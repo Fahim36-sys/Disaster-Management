@@ -1,14 +1,16 @@
-public class Citizen extends Person{
+public class Citizen{
+    private Person person;
     private String citizenID;
     private String address;
     private String reportType;
     public Citizen(){}
-    public Citizen(String name,String phone,String citizenID,String address,String reportType){
-        super(name,phone);
+    public Citizen(String citizenID,String address,String reportType){
         this.citizenID=citizenID;
         this.address=address;
         this.reportType=reportType;
     }
+    public void setPerson(Person person){this.person=person;}
+    public Person getPerson(){return person;}
     public String getCitizenID(){return citizenID;}
     public void setCitizenID(String citizenID){
         this.citizenID=citizenID;
@@ -21,11 +23,6 @@ public class Citizen extends Person{
         System.out.println("CitizenID: "+citizenID);
         System.out.println("Address: "+address);
         System.out.println("ReportType: "+reportType);
-        super.showPersonDetails();
-    }
-    
-    @Override
-    public void displayDetails(){
-        showCitizenDetails();
+        person.showPersonDetails();
     }
 }
