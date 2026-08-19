@@ -1,4 +1,4 @@
-public class ResponseTeam implements Respondable{
+public class ResponseTeam{
     private String teamid;
     private String teamname;
     private String numberOfteammembers;
@@ -8,12 +8,6 @@ public class ResponseTeam implements Respondable{
         this.teamname=teamname;
         this.numberOfteammembers=numberOfteammembers;
     }
-    @Override
-    public void respond(){
-        System.out.println("Respon Team is responding to the disaster;");
-    }
-
-
     public void setteamid(String teamid){this.teamid=teamid;}
     public void setteamname(String teamname){this.teamname=teamname;}
     public void setnumberOfTeammembers(String numberOfteammembers){this.numberOfteammembers=numberOfteammembers;}
