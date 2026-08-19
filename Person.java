@@ -15,5 +15,5 @@ public abstract class Person{
         System.out.println("Name: "+name);
         System.out.println("Phone: "+phone);
      }
-   public abstract void display();
+    public abstract void display();
 }
