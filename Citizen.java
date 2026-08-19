@@ -25,4 +25,7 @@ public class Citizen{
         System.out.println("ReportType: "+reportType);
         person.showPersonDetails();
     }
+    public void display(){
+        showCitizenDetails();
+    }
 }
