@@ -10,10 +10,9 @@ public abstract class Person{
     public void setphone(String phone){this.phone=phone;}
     public String getname(){return name;}
     public String getphone(){return phone;}
-     
-     public void showPersonDetails(){
+    public void showPersonDetails(){
         System.out.println("Name: "+name);
         System.out.println("Phone: "+phone);
-     }
+    }
     public abstract void display();
 }
