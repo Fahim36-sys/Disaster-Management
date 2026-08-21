@@ -373,7 +373,7 @@ public class GUI implements ActionListener {
 	}
     JTextArea createTextArea(int x,int y,int w,int h){
         JTextArea component=new JTextArea();
-        component.setFont(font15);
+        component.setFont(new Font("Arial", Font.PLAIN,18));
         component.setLineWrap(true);
         component.setWrapStyleWord(true);
         JScrollPane scrollPane=new JScrollPane(component);
