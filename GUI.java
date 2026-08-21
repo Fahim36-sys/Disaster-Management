@@ -251,9 +251,8 @@ public class GUI implements ActionListener {
         String teamId=inputFields[0].getText().trim();
         String teamName=inputFields[1].getText().trim();
         int memberCount;
-        try{
-            memberCount=Integer.parseInt(inputFields[2].getText().trim());
-        }catch(NumberFormatException ex){
+        try{memberCount=Integer.parseInt(inputFields[2].getText().trim());}
+        catch(NumberFormatException ex){
             showMessage("Team Members must be a number.");
             return;
         }
