@@ -12,8 +12,12 @@ public class DamageAssesment{
     public double estimateddamagecost(){return estimateddamagecost;}
     public int affectedpeople(){return affectedpeople;}
 
+    public String getDisplayText(){
+        return "Damage Assessment\n"
+            + "  Estimated Damage Cost: " + estimateddamagecost + "\n"
+            + "  Affected People: " + affectedpeople;
+    }
     public void showDmgDetails(){
-         System.out.println("EstimatedDamageCost:"+estimateddamagecost);
-          System.out.println("AffectedPeople:"+affectedpeople);
+         System.out.println(getDisplayText());
     }
 }

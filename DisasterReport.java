@@ -25,11 +25,18 @@ public class DisasterReport {
     public Citizen getcitizen(){return citizen;}
     public Disaster getdisaster(){return disaster;}
 
+    public String getDisplayText(){
+        String citizenDetails=citizen==null?"Not provided":citizen.getDisplayText();
+        String disasterDetails=disaster==null?"Not provided":disaster.getDisplayText();
+        return "DISASTER REPORT\n"
+            + "Report ID: " + reportid + "\n"
+            + "Date and Time: " + reportdateandtime + "\n"
+            + "Description: " + description + "\n\n"
+            + citizenDetails + "\n\n"
+            + disasterDetails;
+    }
+
     public void showDetails(){
-         System.out.println("ReportId:"+reportid);
-         System.out.println("Reportdataandtime:"+reportdateandtime);
-         System.out.println("Description:"+description);
-         System.out.println("Citizen:"+citizen);
-          System.out.println("Disaster:"+disaster);
+         System.out.println(getDisplayText());
     }
 }
