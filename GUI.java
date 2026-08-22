@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 public class GUI implements ActionListener {
     JFrame frame;
+    Image AiubLogo=new ImageIcon("AiubLogo.png").getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
     Font font15 = new Font("Arial", Font.PLAIN, 15);
-    JLabel CitizenNameLabel,CitizenAgeLabel,CitizenAddressLabel,CitizenPhoneLabel,DisasterTypeLabel, DisasterLocationLabel,DisasterDateLabel,DisasterReportIdLabel,DisasterReportDateTimeLabel, DisasterReportDescriptionLabel,TextAreaLabel,TextAreaLabel2;
+    JLabel CitizenNameLabel,CitizenAgeLabel,CitizenAddressLabel,CitizenPhoneLabel,DisasterTypeLabel, DisasterLocationLabel,DisasterDateLabel,DisasterReportIdLabel,DisasterReportDateTimeLabel, DisasterReportDescriptionLabel,TextAreaLabel,TextAreaLabel2,AiublogoLabel;
     JButton addCitizenButton,addDisasterButton,disasterReportButton,teamInfoButton;
     JButton createTeamButton,deleteTeamButton,assignResponderButton,removeResponderButton,updateReportButton;
     JLabel[] inputLabels;
@@ -21,14 +22,17 @@ public class GUI implements ActionListener {
     String activeMenu="";
     public GUI(){
         frame = new JFrame("Disaster Management System");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);       //rgb(32, 184, 235)
-        frame.setSize(1700, 700);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);       //rgb(9, 121, 4)
+        frame.setSize(1600, 700);
         frame.getContentPane().setBackground(new Color(81, 136, 150));
         frame.setResizable(false);
 		frame.setLayout(null);
         JLabel titleLabel=createLabel("Disaster Management System",300,6,400,30);
         titleLabel.setForeground(Color.RED);
         titleLabel.setFont(new Font("Arial",Font.BOLD,24));
+        AiublogoLabel=createLabel("", 48, 300, 400, 400);
+        AiublogoLabel.setIcon(new ImageIcon(AiubLogo));
+        AiublogoLabel.setBackground(null);
         addCitizenButton=createButton("Add Citizen", 50, 50, 150, 30);
         addDisasterButton=createButton("Add Disaster", 50, 100, 150, 30);
         disasterReportButton=createButton("Disaster Report", 50, 150, 150, 30);
@@ -39,7 +43,7 @@ public class GUI implements ActionListener {
         deleteTeamButton.setBackground(new Color(190, 99, 66));
         assignResponderButton=createButton("Assign Responder", 410, 380, 170, 30);
         removeResponderButton=createButton("Remove Responder", 230, 380, 170, 30);
-        removeResponderButton.setForeground(Color.red);
+        removeResponderButton.setForeground(Color.RED);
         assignResponderButton.setForeground(Color.BLUE);
         updateReportButton=createButton("Update Report", 250, 580, 270, 40);
         updateReportButton.setBackground(new Color(15, 192, 142));
@@ -52,7 +56,7 @@ public class GUI implements ActionListener {
         CitizenNameLabel.setForeground(Color.WHITE);
         CitizenNameLabel.setFont(new Font("Arial",Font.BOLD,15));
         CitizenAgeLabel.setForeground(Color.WHITE);
-        CitizenAgeLabel.setFont(new Font("Arial",Font.BOLD, 15));
+        CitizenAgeLabel.setFont(new Font("Arial",Font.BOLD,15));
         CitizenAddressLabel.setForeground(Color.WHITE);
         CitizenAddressLabel.setFont(new Font("Arial",Font.BOLD,15));
         CitizenPhoneLabel.setForeground(Color.WHITE);
@@ -94,30 +98,18 @@ public class GUI implements ActionListener {
         else if(e.getSource()==addCitizenButton){showCitizenInputs();}
         else if(e.getSource()==disasterReportButton){showDisasterReportInputs();}
         else if(e.getSource()==teamInfoButton){showTeamInputs();}
-        else if(e.getSource()==createTeamButton){
-            createTeam();
-        }else if(e.getSource()==deleteTeamButton){
-            deleteTeam();
-        }else if(e.getSource()==assignResponderButton){
-            assignResponder();
-        }else if(e.getSource()==removeResponderButton){
-            removeResponder();
-        }else if(e.getSource()==updateReportButton){
-            updateReport();
-        }
+        else if(e.getSource()==createTeamButton){createTeam();}
+        else if(e.getSource()==deleteTeamButton){deleteTeam();}
+        else if(e.getSource()==assignResponderButton){assignResponder();}
+        else if(e.getSource()==removeResponderButton){removeResponder();}
+        else if(e.getSource()==updateReportButton){updateReport();}
     }
     void updateReport(){
-        if(activeMenu.equals("citizen")){
-            updateCitizenReport();
-        }else if(activeMenu.equals("disaster")){
-            updateDisasterReport();
-        }else if(activeMenu.equals("report")){
-            generateReport();
-        }else if(activeMenu.equals("team")){
-            updateTeamInfoArea();
-        }else{
-            showMessage("Select a menu before updating the report.");
-        }
+        if(activeMenu.equals("citizen")){updateCitizenReport();}
+        else if(activeMenu.equals("disaster")){updateDisasterReport();}
+        else if(activeMenu.equals("report")){generateReport();}
+        else if(activeMenu.equals("team")){updateTeamInfoArea();}
+        else{showMessage("Select a menu before updating the report.");}
     }
     void updateCitizenReport(){
         String citizenId=inputFields[0].getText().trim();
@@ -173,7 +165,8 @@ public class GUI implements ActionListener {
         StringBuilder reportText=new StringBuilder();
         if(currentDisasterReport!=null){
             reportText.append(currentDisasterReport.getDisplayText());
-        }else{
+        }
+        else{
             reportText.append("DISASTER REPORT\n  Not updated");
             if(currentCitizen!=null){
                 reportText.append("\n\n").append(currentCitizen.getDisplayText());
@@ -220,7 +213,7 @@ public class GUI implements ActionListener {
     void showDisasterReportInputs(){
         activeMenu="report";
         setInputPanelVisible(true);
-        String[] labels={"Report ID:","Report Date and Time: ","Description:","Disaster ID:"};
+        String[] labels={"Report ID:","Report Date and Time: ","Description:"};
         setTeamControlsVisible(false);
         for(int i=0;i<inputLabels.length;i++){
             boolean visible=i<labels.length;
@@ -236,7 +229,7 @@ public class GUI implements ActionListener {
     void showTeamInputs(){
         activeMenu="team";
         setInputPanelVisible(true);
-        String[] labels={"Team ID:", "Team Name:", "Team Members:", "Responder ID:", "Responder Name:"};
+        String[] labels={"Team ID:","Team Name:","Team Members:","Responder ID:","Responder Name:"};
         for(int i=0;i<inputLabels.length;i++){
             inputLabels[i].setVisible(true);
             inputFields[i].setVisible(true);
