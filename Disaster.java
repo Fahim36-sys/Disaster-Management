@@ -1,4 +1,4 @@
-public class Disaster {
+public class Disaster{
     private String disasterID,type,severity;
     private ResponseTeam responseTeam;
     public Disaster(){}
@@ -20,9 +20,9 @@ public class Disaster {
         String teamName=responseTeam==null?"Not found":responseTeam.getteamname();
         return "Disaster Information\n"
             + "  Disaster ID: "+disasterID+"\n"
-            + "  Type: " +type+"\n"
-            + "  Severity: " +severity+"\n"
-            + "  Response Team: " +teamName;
+            + "  Type: "+type+"\n"
+            + "  Severity: "+severity+"\n"
+            + "  Response Team: "+teamName;
     }
     public void showDisasterInfo(){
         System.out.println(getDisplayText());
