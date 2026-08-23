@@ -19,10 +19,10 @@ public class Disaster {
     public String getDisplayText(){
         String teamName=responseTeam==null?"Not found":responseTeam.getteamname();
         return "Disaster Information\n"
-            + "  Disaster ID: " + disasterID + "\n"
-            + "  Type: " + type + "\n"
-            + "  Severity: " + severity + "\n"
-            + "  Response Team: " + teamName;
+            + "  Disaster ID: "+disasterID+"\n"
+            + "  Type: " +type+"\n"
+            + "  Severity: " +severity+"\n"
+            + "  Response Team: " +teamName;
     }
     public void showDisasterInfo(){
         System.out.println(getDisplayText());

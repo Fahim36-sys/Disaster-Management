@@ -7,8 +7,8 @@ public class GUI implements ActionListener {
     JFrame frame;
     Image AiubLogo=new ImageIcon("AiubLogo.png").getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
     Font font15 = new Font("Arial", Font.PLAIN, 15);
-    JLabel CitizenNameLabel,CitizenAgeLabel,CitizenAddressLabel,CitizenPhoneLabel,DisasterTypeLabel, DisasterLocationLabel,DisasterDateLabel,DisasterReportIdLabel,DisasterReportDateTimeLabel, DisasterReportDescriptionLabel,TextAreaLabel,TextAreaLabel2,AiublogoLabel;
-    JButton addCitizenButton,addDisasterButton,disasterReportButton,teamInfoButton;
+    JLabel CitizenNameLabel,CitizenAgeLabel,CitizenAddressLabel,CitizenPhoneLabel,DisasterTypeLabel,DisasterLocationLabel,DisasterDateLabel,DisasterReportIdLabel,DisasterReportDateTimeLabel,DisasterReportDescriptionLabel,TextAreaLabel,TextAreaLabel2,AiublogoLabel;
+    JButton addCitizenButton,addDisasterButton,disasterReportButton,teamInfoButton,damageAssesmentButton;
     JButton createTeamButton,deleteTeamButton,assignResponderButton,removeResponderButton,updateReportButton;
     JLabel[] inputLabels;
     JTextField[] inputFields;
@@ -37,6 +37,8 @@ public class GUI implements ActionListener {
         addDisasterButton=createButton("Add Disaster", 50, 100, 150, 30);
         disasterReportButton=createButton("Disaster Report", 50, 150, 150, 30);
         teamInfoButton=createButton("Team Info", 50, 200, 150, 30);
+        damageAssesmentButton=createButton("Damage\n Assessment", 50, 250, 150,50);
+        damageAssesmentButton.setFont(new Font("Arial",Font.PLAIN,14));
         createTeamButton=createButton("Create Team", 230, 320, 150, 40);
         createTeamButton.setBackground(new Color(15, 192, 142));
         deleteTeamButton=createButton("Delete Team", 410, 320, 150, 40);
@@ -60,7 +62,7 @@ public class GUI implements ActionListener {
         CitizenAddressLabel.setForeground(Color.WHITE);
         CitizenAddressLabel.setFont(new Font("Arial",Font.BOLD,15));
         CitizenPhoneLabel.setForeground(Color.WHITE);
-        CitizenPhoneLabel.setFont(new Font("Arial", Font.BOLD,15));
+        CitizenPhoneLabel.setFont(new Font("Arial",Font.BOLD,15));
         DisasterTypeLabel.setForeground(Color.WHITE);
         DisasterTypeLabel.setFont(new Font("Arial", Font.BOLD,15));
         TextAreaLabel=createLabel("Disaster Report Details:",650,20,250,30);
@@ -84,6 +86,7 @@ public class GUI implements ActionListener {
         addDisasterButton.addActionListener(this);
         disasterReportButton.addActionListener(this);
         teamInfoButton.addActionListener(this);
+        damageAssesmentButton.addActionListener(this);
         createTeamButton.addActionListener(this);
         deleteTeamButton.addActionListener(this);
         assignResponderButton.addActionListener(this);
@@ -98,6 +101,7 @@ public class GUI implements ActionListener {
         else if(e.getSource()==addCitizenButton){showCitizenInputs();}
         else if(e.getSource()==disasterReportButton){showDisasterReportInputs();}
         else if(e.getSource()==teamInfoButton){showTeamInputs();}
+        else if(e.getSource()==damageAssesmentButton){showDamageAssessmentInputs();}
         else if(e.getSource()==createTeamButton){createTeam();}
         else if(e.getSource()==deleteTeamButton){deleteTeam();}
         else if(e.getSource()==assignResponderButton){assignResponder();}
@@ -109,6 +113,7 @@ public class GUI implements ActionListener {
         else if(activeMenu.equals("disaster")){updateDisasterReport();}
         else if(activeMenu.equals("report")){generateReport();}
         else if(activeMenu.equals("team")){updateTeamInfoArea();}
+        else if(activeMenu.equals("damage")){updateDamageAssessment();}
         else{showMessage("Select a menu before updating the report.");}
     }
     void updateCitizenReport(){
@@ -159,6 +164,24 @@ public class GUI implements ActionListener {
             currentDisaster=new Disaster(disasterId,"Not specified","Not specified",selectedTeam);
         }
         currentDisasterReport=new DisasterReport(reportId,reportDate,description,currentCitizen,currentDisaster);
+        updateReportArea();
+    }
+    void updateDamageAssessment(){
+        double estimatedDamageCost;
+        int affectedPeople;
+        try{
+            estimatedDamageCost=Double.parseDouble(inputFields[0].getText().trim());
+            affectedPeople=Integer.parseInt(inputFields[1].getText().trim());
+        }
+        catch(NumberFormatException ex){
+            showMessage("Enter a valid damage cost and number of affected people.");
+            return;
+        }
+        if(estimatedDamageCost<0||affectedPeople<0){
+            showMessage("Damage cost and affected people cannot be negative.");
+            return;
+        }
+        currentDamageAssesment=new DamageAssesment(estimatedDamageCost,affectedPeople);
         updateReportArea();
     }
     void updateReportArea(){
@@ -224,6 +247,23 @@ public class GUI implements ActionListener {
                 inputFields[i].setText("");
             }
         }
+        refreshInputPanel();
+    }
+    void showDamageAssessmentInputs(){
+        activeMenu="damage";
+        setInputPanelVisible(true);
+        setTeamControlsVisible(false);
+        String[] labels={"Estimated Damage Cost:","Affected People:"};
+        for(int i=0;i<inputLabels.length;i++){
+            boolean visible=i<labels.length;
+            inputLabels[i].setVisible(visible);
+            inputFields[i].setVisible(visible);
+            if(visible){
+                inputLabels[i].setText(labels[i]);
+                inputFields[i].setText("");
+            }
+        }
+        updateReportArea();
         refreshInputPanel();
     }
     void showTeamInputs(){
