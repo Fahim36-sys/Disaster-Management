@@ -92,6 +92,7 @@ public class GUI implements ActionListener {
         assignResponderButton.addActionListener(this);
         removeResponderButton.addActionListener(this);
         updateReportButton.addActionListener(this);
+        loadSavedInformation();
         setInputPanelVisible(false);
         setTeamControlsVisible(false);
 		frame.setVisible(true);
@@ -128,6 +129,7 @@ public class GUI implements ActionListener {
         currentCitizen=new Citizen(citizenId,reportType,name,phone);
         if(currentDisasterReport!=null){
             currentDisasterReport.setcitizen(currentCitizen);
+            saveDisasterReport();
         }
         updateReportArea();
     }
@@ -143,6 +145,7 @@ public class GUI implements ActionListener {
         currentDisaster=new Disaster(disasterId,type,severity,team==null?selectedTeam:team);
         if(currentDisasterReport!=null){
             currentDisasterReport.setdisaster(currentDisaster);
+            saveDisasterReport();
         }
         updateReportArea();
     }
@@ -164,6 +167,7 @@ public class GUI implements ActionListener {
             currentDisaster=new Disaster(disasterId,"Not specified","Not specified",selectedTeam);
         }
         currentDisasterReport=new DisasterReport(reportId,reportDate,description,currentCitizen,currentDisaster);
+        saveDisasterReport();
         updateReportArea();
     }
     void updateDamageAssessment(){
@@ -299,6 +303,8 @@ public class GUI implements ActionListener {
         }
         selectedTeam=new ResponseTeam(teamId,teamName,String.valueOf(memberCount),new Responder[memberCount],new TeamLeader());
         teams.add(selectedTeam);
+        saveTeamInfo();
+        if(currentDisasterReport!=null){saveDisasterReport();}
         updateTeamInfoArea();
     }
     void deleteTeam(){
@@ -309,6 +315,8 @@ public class GUI implements ActionListener {
         }
         teams.remove(team);
         selectedTeam=teams.isEmpty()?null:teams.get(0);
+        saveTeamInfo();
+        if(currentDisasterReport!=null){saveDisasterReport();}
         updateTeamInfoArea();
     }
     void assignResponder(){
@@ -321,6 +329,8 @@ public class GUI implements ActionListener {
         }
         selectedTeam=team;
         team.assignResponder(new Responder(responderId,"General","Available",responderName,""));
+        saveTeamInfo();
+        if(currentDisasterReport!=null){saveDisasterReport();}
         updateTeamInfoArea();
     }
     void removeResponder(){
@@ -332,6 +342,8 @@ public class GUI implements ActionListener {
         }
         selectedTeam=team;
         team.removeResponder(responderId);
+        saveTeamInfo();
+        if(currentDisasterReport!=null){saveDisasterReport();}
         updateTeamInfoArea();
     }
     ResponseTeam findTeam(String teamId){
@@ -360,6 +372,23 @@ public class GUI implements ActionListener {
             }
             teamInfoArea.append("\n");
         }
+    }
+    void saveDisasterReport(){
+        Start.saveDisasterReport(currentDisasterReport);
+    }
+    void saveTeamInfo(){
+        Start.saveTeamInfo(teams);
+    }
+    void loadSavedInformation(){
+        teams.addAll(Start.loadTeamInfo());
+        if(!teams.isEmpty()){selectedTeam=teams.get(0);}
+        currentDisasterReport=Start.loadDisasterReport(teams);
+        if(currentDisasterReport!=null){
+            currentCitizen=currentDisasterReport.getcitizen();
+            currentDisaster=currentDisasterReport.getdisaster();
+        }
+        updateTeamInfoArea();
+        updateReportArea();
     }
     void setTeamControlsVisible(boolean visible){
         createTeamButton.setVisible(visible);
