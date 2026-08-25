@@ -118,6 +118,7 @@ public class GUI implements ActionListener {
         else if(activeMenu.equals("team")){updateTeamInfoArea();}
         else if(activeMenu.equals("damage")){updateDamageAssessment();}
         else{showMessage("Select a menu before updating the report.");}
+        if(currentDisasterReport!=null){saveDisasterReport();}
     }
     void updateCitizenReport(){
         String citizenId=inputFields[0].getText().trim();
@@ -376,7 +377,7 @@ public class GUI implements ActionListener {
         }
     }
     void saveDisasterReport(){
-        Start.saveDisasterReport(currentDisasterReport);
+        Start.saveDisasterReport(currentDisasterReport,currentDamageAssesment);
     }
     void saveTeamInfo(){
         Start.saveTeamInfo(teams);
@@ -389,6 +390,7 @@ public class GUI implements ActionListener {
             currentCitizen=currentDisasterReport.getcitizen();
             currentDisaster=currentDisasterReport.getdisaster();
         }
+        currentDamageAssesment=Start.loadDamageAssesment();
         updateTeamInfoArea();
         updateReportArea();
     }

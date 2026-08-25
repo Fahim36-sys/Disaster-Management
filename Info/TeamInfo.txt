@@ -1,0 +1,20 @@
+Team ID: 111
+Team Name: Rancher
+Members: 10
+Responders:
+  1 - Fahim
+  2 - Shaoda
+  3 - Turja
+  4 - Orpon
+  5 - Faiza
+
+Team ID: 112
+Team Name: GG
+Members: 10
+Responders:
+  1 - Fahim
+  2 - Reed
+  3 - Sunan
+  4 - Rudra
+  5 - Anika
+

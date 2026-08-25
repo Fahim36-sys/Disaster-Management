@@ -1,0 +1,20 @@
+DISASTER REPORT
+Report ID: 122
+Date and Time: 12/12/26
+Description: jhshdhf
+
+Citizen Information
+  Citizen ID: 123
+  Name: Fahim
+  Phone: 12345643
+  Report Type: Online
+
+Disaster Information
+  Disaster ID: 123
+  Type: Flood
+  Severity: High
+  Response Team: Rancher
+
+Damage Assessment
+  Estimated Damage Cost: 120000.0
+  Affected People: 110

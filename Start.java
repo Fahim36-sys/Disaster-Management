@@ -6,14 +6,12 @@ import DisasterReport.*;
 import ResponseTeam.*;
 
 public class Start{
-    public static void main(String[] args) {
-       GUI gui=new GUI();
-    }
-
-    public static void saveDisasterReport(DisasterReport report){
+    public static void main(String[] args){GUI gui=new GUI();}
+    public static void saveDisasterReport(DisasterReport report,DamageAssesment damageAssesment){
         try{
             FileWriter file=new FileWriter("Info/DisasterReport.txt");
             file.write(report.getDisplayText());
+            file.write("\n\n"+damageAssesment.getDisplayText());
             file.close();
         }
         catch(IOException ex){
@@ -122,6 +120,29 @@ public class Start{
         ResponseTeam team=findTeamByName(teams,teamName);
         Disaster disaster=new Disaster(disasterId,disasterType,severity,team);
         return new DisasterReport(reportId,reportDate,description,citizen,disaster);
+    }
+
+    public static DamageAssesment loadDamageAssesment(){
+        double estimatedDamageCost=0;
+        int affectedPeople=0;
+        try{
+            Scanner file=new Scanner(new File("Info/DisasterReport.txt"));
+            while(file.hasNextLine()){
+                String line=file.nextLine();
+                if(line.startsWith("  Estimated Damage Cost: ")){
+                    try{estimatedDamageCost=Double.parseDouble(line.substring("  Estimated Damage Cost: ".length()));}
+                    catch(NumberFormatException ex){estimatedDamageCost=0;}
+                }
+                else if(line.startsWith("  Affected People: ")){
+                    try{affectedPeople=Integer.parseInt(line.substring("  Affected People: ".length()));}
+                    catch(NumberFormatException ex){affectedPeople=0;}
+                }
+            }
+            file.close();
+        }
+        catch(IOException ex){
+        }
+        return new DamageAssesment(estimatedDamageCost,affectedPeople);
     }
 
     static ResponseTeam findTeamByName(List<ResponseTeam> teams,String teamName){
