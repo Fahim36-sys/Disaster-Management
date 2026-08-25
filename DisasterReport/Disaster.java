@@ -1,3 +1,5 @@
+package DisasterReport;
+import ResponseTeam.ResponseTeam;
 public class Disaster{
     private String disasterID,type,severity;
     private ResponseTeam responseTeam;

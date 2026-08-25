@@ -1,3 +1,5 @@
+package ResponseTeam;
+
 public class ResponseTeam implements IResponseTeam{
     private String teamid;
     private String teamname;

@@ -1,3 +1,4 @@
+package DisasterReport;
 public class DamageAssesment{
     public double estimateddamagecost;
     public int affectedpeople;

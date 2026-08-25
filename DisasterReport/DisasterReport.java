@@ -1,3 +1,5 @@
+package DisasterReport;
+import ResponseTeam.Citizen;
 public class DisasterReport {
     private String reportid;
     private String reportdateandtime;

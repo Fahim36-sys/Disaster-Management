@@ -1,4 +1,5 @@
-   public class TeamLeader{
+package ResponseTeam;
+public class TeamLeader{
     //team leader has many response team
     private String teamLeaderID;
     private Person person;

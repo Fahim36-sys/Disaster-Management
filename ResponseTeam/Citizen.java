@@ -1,3 +1,4 @@
+package ResponseTeam;
 public class Citizen extends Person{
     private String citizenID;
     private String reportType;
