@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Scanner;
 import DisasterReport.*;
 import ResponseTeam.*;
-
 public class Start{
     public static void main(String[] args){GUI gui=new GUI();}
     public static void saveDisasterReport(DisasterReport report,DamageAssesment damageAssesment){
@@ -18,7 +17,6 @@ public class Start{
             System.out.println("Could not save the disaster report.");
         }
     }
-
     public static void saveTeamInfo(List<ResponseTeam> teams){
         try{
             FileWriter file=new FileWriter("Info/TeamInfo.txt");
@@ -40,7 +38,6 @@ public class Start{
             System.out.println("Could not save the team information.");
         }
     }
-
     public static ArrayList<ResponseTeam> loadTeamInfo(){
         ArrayList<ResponseTeam> teams=new ArrayList<>();
         try{
@@ -113,15 +110,13 @@ public class Start{
             }
             file.close();
         }
-        catch(IOException ex){
-        }
+        catch(IOException ex){}
         if(reportId.isEmpty()){return null;}
         Citizen citizen=new Citizen(citizenId,reportType,citizenName,citizenPhone);
         ResponseTeam team=findTeamByName(teams,teamName);
         Disaster disaster=new Disaster(disasterId,disasterType,severity,team);
         return new DisasterReport(reportId,reportDate,description,citizen,disaster);
     }
-
     public static DamageAssesment loadDamageAssesment(){
         double estimatedDamageCost=0;
         int affectedPeople=0;
@@ -144,7 +139,6 @@ public class Start{
         }
         return new DamageAssesment(estimatedDamageCost,affectedPeople);
     }
-
     static ResponseTeam findTeamByName(List<ResponseTeam> teams,String teamName){
         for(ResponseTeam team:teams){
             if(team.getteamname().equals(teamName)){return team;}

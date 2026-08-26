@@ -24,7 +24,7 @@ public class GUI implements ActionListener {
     String activeMenu="";
     public GUI(){
         frame = new JFrame("Disaster Management System");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);       //rgb(9, 121, 4)
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //click this box to get rgb(9, 121, 4) values
         frame.setSize(1600, 700);
         frame.getContentPane().setBackground(new Color(81, 136, 150));
         frame.setResizable(false);
@@ -35,7 +35,7 @@ public class GUI implements ActionListener {
         AiublogoLabel=createLabel("", 48, 300, 400, 400);
         AiublogoLabel.setIcon(new ImageIcon(AiubLogo));
         AiublogoLabel.setBackground(null);
-        addCitizenButton=createButton("Add Citizen", 50, 50, 150, 30);
+        addCitizenButton=createButton("Add Citizen",50,50,150,30);
         addDisasterButton=createButton("Add Disaster", 50, 100, 150, 30);
         disasterReportButton=createButton("Disaster Report", 50, 150, 150, 30);
         teamInfoButton=createButton("Team Info", 50, 200, 150, 30);
