@@ -157,8 +157,7 @@ public class GUI implements ActionListener {
         String reportDate=inputFields[1].getText().trim();
         String description=inputFields[2].getText().trim();
         String disasterId=inputFields[3].getText().trim();
-        if(reportId.isEmpty()||reportDate.isEmpty()||description.isEmpty()
-                ||disasterId.isEmpty()){
+        if(reportId.isEmpty()||reportDate.isEmpty()||description.isEmpty()||disasterId.isEmpty()){
             showMessage("Complete all disaster report fields before generating the report.");
             return;
         }
