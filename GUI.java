@@ -9,7 +9,7 @@ public class GUI implements ActionListener {
     JFrame frame;
     Image AiubLogo=new ImageIcon("AiubLogo.png").getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
     Font font15 = new Font("Arial", Font.PLAIN, 15);
-    JLabel CitizenNameLabel,CitizenAgeLabel,CitizenAddressLabel,CitizenPhoneLabel,DisasterTypeLabel,DisasterLocationLabel,DisasterDateLabel,DisasterReportIdLabel,DisasterReportDateTimeLabel,DisasterReportDescriptionLabel,TextAreaLabel,TextAreaLabel2,AiublogoLabel;
+    JLabel CitizenNameLabel,CitizenAgeLabel,CitizenAddressLabel,CitizenPhoneLabel,DisasterTypeLabel,DisasterLocationLabel,DisasterDateLabel,DisasterReportIdLabel,DisasterReportDateTimeLabel,DisasterReportDescriptionLabel,TextAreaLabel,TextAreaLabel2,AiublogoLabel,WelcomeLabel;
     JButton addCitizenButton,addDisasterButton,disasterReportButton,teamInfoButton,damageAssesmentButton;
     JButton createTeamButton,deleteTeamButton,assignResponderButton,removeResponderButton,updateReportButton;
     JLabel[] inputLabels;
@@ -35,6 +35,12 @@ public class GUI implements ActionListener {
         AiublogoLabel=createLabel("", 48, 300, 400, 400);
         AiublogoLabel.setIcon(new ImageIcon(AiubLogo));
         AiublogoLabel.setBackground(null);
+        WelcomeLabel=createLabel("Click menu button to continue", 300, 40, 350, 20);
+        WelcomeLabel.setForeground(new Color(255, 255, 255));
+        WelcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        WelcomeLabel.setVerticalAlignment(SwingConstants.CENTER);
+        WelcomeLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        WelcomeLabel.setVisible(true);
         addCitizenButton=createButton("Add Citizen",50,50,150,30);
         addDisasterButton=createButton("Add Disaster", 50, 100, 150, 30);
         disasterReportButton=createButton("Disaster Report", 50, 150, 150, 30);
@@ -100,6 +106,9 @@ public class GUI implements ActionListener {
 		frame.setVisible(true);
     }
     public void actionPerformed(ActionEvent e){
+        if(isMenuButton(e.getSource())){
+            hideWelcomeLabel();
+        }
         if(e.getSource()==addDisasterButton){showDisasterInputs();}
         else if(e.getSource()==addCitizenButton){showCitizenInputs();}
         else if(e.getSource()==disasterReportButton){showDisasterReportInputs();}
@@ -110,6 +119,15 @@ public class GUI implements ActionListener {
         else if(e.getSource()==assignResponderButton){assignResponder();}
         else if(e.getSource()==removeResponderButton){removeResponder();}
         else if(e.getSource()==updateReportButton){updateReport();}
+    }
+
+    private boolean isMenuButton(Object source){
+        return source==addCitizenButton || source==addDisasterButton || source==disasterReportButton
+                || source==teamInfoButton || source==damageAssesmentButton;
+    }
+
+    private void hideWelcomeLabel(){
+        WelcomeLabel.setVisible(false);
     }
     void updateReport(){
         if(activeMenu.equals("citizen")){updateCitizenReport();}
