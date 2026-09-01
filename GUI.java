@@ -26,7 +26,7 @@ public class GUI implements ActionListener {
         frame = new JFrame("Disaster Management System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //click this box to get rgb(9, 121, 4) values
         frame.setSize(1600, 700);
-        frame.getContentPane().setBackground(new Color(81, 136, 150));
+        frame.getContentPane().setBackground(new Color(81,136,150));
         frame.setResizable(false);
 		frame.setLayout(null);
         JLabel titleLabel=createLabel("Disaster Management System",300,6,400,30);
@@ -35,7 +35,7 @@ public class GUI implements ActionListener {
         AiublogoLabel=createLabel("", 48, 300, 400, 400);
         AiublogoLabel.setIcon(new ImageIcon(AiubLogo));
         AiublogoLabel.setBackground(null);
-        WelcomeLabel=createLabel("Click menu button to continue", 300, 40, 350, 20);
+        WelcomeLabel=createLabel("Click any menu button to continue",230,200,390,80);
         WelcomeLabel.setForeground(new Color(255, 255, 255));
         WelcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));
         WelcomeLabel.setVerticalAlignment(SwingConstants.CENTER);
@@ -120,12 +120,10 @@ public class GUI implements ActionListener {
         else if(e.getSource()==removeResponderButton){removeResponder();}
         else if(e.getSource()==updateReportButton){updateReport();}
     }
-
     private boolean isMenuButton(Object source){
         return source==addCitizenButton || source==addDisasterButton || source==disasterReportButton
                 || source==teamInfoButton || source==damageAssesmentButton;
     }
-
     private void hideWelcomeLabel(){
         WelcomeLabel.setVisible(false);
     }
